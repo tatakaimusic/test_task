@@ -14,13 +14,19 @@ public class ControllerAdvice {
 
     /**
      * Handle MethodArgumentNotValidException
-     * @param e
-     * @return
+     *
+     * @param e MethodArgumentNotValidException
+     * @return ExceptionBody
      */
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ExceptionBody handleMethodArgumentNotValid(MethodArgumentNotValidException e) {
-        return new ExceptionBody(Objects.requireNonNull(e.getFieldError()).getDefaultMessage());
+    public ExceptionBody handleMethodArgumentNotValid(
+            MethodArgumentNotValidException e
+    ) {
+        return new ExceptionBody(
+                Objects.requireNonNull(e.getFieldError())
+                        .getDefaultMessage()
+        );
     }
 
 }
